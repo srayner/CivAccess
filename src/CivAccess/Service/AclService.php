@@ -13,7 +13,7 @@ class AclService
     
     public function __construct($dbMapper)
     {
-        $this->dbMapper = $dmMapper;
+        $this->dbMapper = $dbMapper;
         $this->acl = new Acl();
     }
    
@@ -34,19 +34,19 @@ class AclService
     
     protected function loadRelevantRules($role)
     {
-        $rules = array(
-            array('guest', 'Application\Controller\Index', 'index'),
-            array('guest', 'Application\Controller\Mock', 'index'),
-            array('guest', 'Application\Controller\Mock', 'add'),
-        );
+   //     $rules = array(
+   //         array('guest', 'Application\Controller\Index', 'index'),
+   //         array('guest', 'Application\Controller\Mock', 'index'),
+   //         array('guest', 'Application\Controller\Mock', 'add'),
+   //     );
         
-        //$rules = $this->dbMapper->getRulesFor($role);
+        $rules = $this->dbMapper->getRulesForRole($role);
         
         foreach($rules as $rule){
-            if (!$this->acl->hasResource($rule[1])){
-                $this->acl->addResource($rule[1]);
+            if (!$this->acl->hasResource($rule->getResource())){
+                $this->acl->addResource($rule->getResource());
             }
-            $this->acl->allow($rule[0], $rule[1], $rule[2]);
+            $this->acl->allow($rule->getRole(), $rule->getResource(), $rule->getPriviledge());
         } 
     }
 }

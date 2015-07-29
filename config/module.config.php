@@ -3,10 +3,14 @@
 return array(
     
     'service_manager' => array(
+        'aliases' => array(
+            'CivAccess\DbAdapter' => 'Zend\Db\Adapter\Adapter'    
+        ),
         'factories' => array(
             'CivAccess\Guards'         => 'CivAccess\Guard\GuardsFactory',
             'CivAccess\DeniedStrategy' => 'CivAccess\Strategy\DeniedStrategyFactory',
-            'CivAccess\AclService'     => 'CivAccess\Service\AclServiceFactory'
+            'CivAccess\AclService'     => 'CivAccess\Service\AclServiceFactory',
+            'CivAccess\DBMapper'       => 'CivAccess\Mapper\AclDbMapperFactory',
         ),    
     ),
     
