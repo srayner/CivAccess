@@ -9,9 +9,11 @@ use Zend\Permissions\Acl\Resource\GenericResource;
 class AclService
 {
     protected $acl;
+    protected $dbMapper;
     
-    public function __construct()
+    public function __construct($dbMapper)
     {
+        $this->dbMapper = $dmMapper;
         $this->acl = new Acl();
     }
    
@@ -37,6 +39,8 @@ class AclService
             array('guest', 'Application\Controller\Mock', 'index'),
             array('guest', 'Application\Controller\Mock', 'add'),
         );
+        
+        //$rules = $this->dbMapper->getRulesFor($role);
         
         foreach($rules as $rule){
             if (!$this->acl->hasResource($rule[1])){

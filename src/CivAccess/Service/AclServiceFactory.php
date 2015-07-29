@@ -8,7 +8,8 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class AclServiceFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
-            {
-        return new AclService();    
+    {
+        $mapper = $serviceLocator->get('CivAccess\DBMapper');
+        return new AclService($mapper);    
     }
 }
