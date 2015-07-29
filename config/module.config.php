@@ -4,9 +4,9 @@ return array(
     
     'service_manager' => array(
         'factories' => array(
-            'CivAccess\Guards'            => 'CivAccess\Guard\GuardsFactory',
-            'CivAccess\ForbiddenStrategy' => 'CivAccess\Strategy\DeniedStrategyFactory',
-            'CivAccess\AuthService'       => 'CivAccess\Service\AuthServiceFactory'
+            'CivAccess\Guards'         => 'CivAccess\Guard\GuardsFactory',
+            'CivAccess\DeniedStrategy' => 'CivAccess\Strategy\DeniedStrategyFactory',
+            'CivAccess\AclService'     => 'CivAccess\Service\AclServiceFactory'
         ),    
     ),
     

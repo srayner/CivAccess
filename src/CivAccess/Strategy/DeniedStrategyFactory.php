@@ -1,19 +1,16 @@
 <?php
 
-namespace CivAccess\Guard;
+namespace CivAccess\Strategy;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class GuardsFactory implements FactoryInterface
+class DeniedStrategyFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $guards = array(
-            new Guard($serviceLocator)
-        );
-       
-        return $guards; 
+        return new DeniedStrategy('error/403');        
     }
 
 }
+

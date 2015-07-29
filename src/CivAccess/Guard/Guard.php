@@ -5,12 +5,23 @@ namespace CivAccess\Guard;
 use Zend\EventManager\EventManagerInterface;
 use Zend\Mvc\MvcEvent;
 use Zend\EventManager\AbstractListenerAggregate;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 use CivAccess\Exception\UnAuthorizedException;
 
 class Guard extends AbstractListenerAggregate
 {
     const ERROR = 'unauthorized';
+    
+    /**
+     * @var ServiceLocatorInterface
+     */
+    protected $serviceLocator;
+    
+    public function __construct(ServiceLocatorInterface $serviceLocator)
+    {
+        $this->serviceLocator = $serviceLocator;
+    }
     
     public function attach(EventManagerInterface $events)
     {
@@ -20,14 +31,18 @@ class Guard extends AbstractListenerAggregate
     public function onDispatch(MvcEvent $event)
     {
         $app        = $event->getTarget();
-        $service    = $this->serviceLocator->get('CivAccess\AuthService');
+        $service    = $this->serviceLocator->get('CivAccess\AclService');
         $match      = $event->getRouteMatch();
-        $role       = $service->getRole();
+        $role       = 'guest';
         $resource   = $match->getParam('controller');
         $priviledge = $match->getParam('action');
         
         // Check access.
-        $authorized = $this->authService->isAllowed($role, $resource, $priviledge);
+  //      echo 'Role: ' . $role . '<br><br>';
+  //      echo 'Resource: ' . $resource . '<br><br>';
+  //      echo 'Priveledge: ' . $priviledge . '<br><br>';
+  //      die();
+        $authorized = $service->isAllowed($role, $resource, $priviledge);
         
         // If authorized, no action is required.
         if ($authorized) {

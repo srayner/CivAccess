@@ -20,7 +20,7 @@ class Module
         }
         
         // Attach a strategy to take if access is denied.
-        $app->eventManager()->attach($strategy);
+        $eventManager->attach($strategy);
     }
     
     public function getAutoloaderConfig()
