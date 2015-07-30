@@ -30,19 +30,16 @@ class Guard extends AbstractListenerAggregate
     
     public function onDispatch(MvcEvent $event)
     {
-        $app        = $event->getTarget();
-        $service    = $this->serviceLocator->get('CivAccess\AclService');
+        $app         = $event->getTarget();
+        $aclService  = $this->serviceLocator->get('CivAccess\AclService');
+        $authService = $this->serviceLocator->get('CivAccess\AuthService');
         $match      = $event->getRouteMatch();
-        $role       = 'guest';
         $resource   = $match->getParam('controller');
         $priviledge = $match->getParam('action');
         
         // Check access.
-  //      echo 'Role: ' . $role . '<br><br>';
-  //      echo 'Resource: ' . $resource . '<br><br>';
-  //      echo 'Priveledge: ' . $priviledge . '<br><br>';
-  //      die();
-        $authorized = $service->isAllowed($role, $resource, $priviledge);
+        $role   = $authService->hasIdentity() ? (string)$authService->getIdentity()->getId() : 'guest';
+        $authorized = $aclService->isAllowed($role, $resource, $priviledge);
         
         // If authorized, no action is required.
         if ($authorized) {

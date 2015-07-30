@@ -41,4 +41,3 @@ class Rule implements RuleInterface
         return $this;
     }
 }
-

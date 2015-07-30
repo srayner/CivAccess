@@ -5,14 +5,14 @@ namespace CivAccess\Mapper;
 use ZfcBase\Mapper\AbstractDbMapper;
 use Zend\Db\Adapter\Adapter;
 
-class AclDbMapper extends AbstractDbMapper implements DbAdapterAwareInterface
+class RoleMapper extends AbstractDbMapper implements DbAdapterAwareInterface
 {
-    protected $tableName = 'access_rule';
+    protected $tableName = 'access_role';
     
-    public function getRulesForRole($role)
+    public function getRoles()
     {
         $select = $this->getSelect()
-                       ->where(array('role' => $role));
+                       ->order(array('priority', 'role'));
         return $this->select($select);
     }
     
@@ -21,4 +21,3 @@ class AclDbMapper extends AbstractDbMapper implements DbAdapterAwareInterface
         $this->dbAdapter = $dbAdapter;
     }
 }
-

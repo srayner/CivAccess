@@ -6,16 +6,16 @@ use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Stdlib\Hydrator\ClassMethods;
 
-use CivAccess\Acl\Rule;
+use CivAccess\Acl\Role;
 
-class AclDbMapperFactory implements FactoryInterface
+class RoleMapperFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $dbAdapter = $serviceLocator->get('CivAccess\DbAdapter');
-        $mapper = new AclDbMapper();
+        $mapper = new RoleMapper();
         $mapper->setDbAdapter($dbAdapter);
-        $mapper->setEntityPrototype(new Rule());
+        $mapper->setEntityPrototype(new Role());
         $mapper->setHydrator(new ClassMethods());
         return $mapper;
     }   

@@ -9,7 +9,8 @@ class AclServiceFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $mapper = $serviceLocator->get('CivAccess\DBMapper');
-        return new AclService($mapper);    
+        $roleMapper = $serviceLocator->get('CivAccess\RoleMapper');
+        $ruleMapper = $serviceLocator->get('CivAccess\RuleMapper');
+        return new AclService($roleMapper, $ruleMapper);    
     }
 }

@@ -9,12 +9,15 @@ use Zend\Permissions\Acl\Resource\GenericResource;
 class AclService
 {
     protected $acl;
-    protected $dbMapper;
+    protected $roleMapper;
+    protected $ruleMapper;
     
-    public function __construct($dbMapper)
+    public function __construct($roleMapper, $ruleMapper)
     {
-        $this->dbMapper = $dbMapper;
+        $this->roleMapper = $roleMapper;
+        $this->ruleMapper = $ruleMapper;
         $this->acl = new Acl();
+        $this->loadRoles();
     }
    
     /**
@@ -26,21 +29,14 @@ class AclService
      */
     public function IsAllowed($role, $resource, $priviledge)
     {
-        $this->acl->addRole(New GenericRole($role));
         $this->acl->addResource(New GenericResource($resource));
         $this->loadRelevantRules($role);
         return $this->acl->isAllowed($role, $resource, $priviledge);
     }
     
     protected function loadRelevantRules($role)
-    {
-   //     $rules = array(
-   //         array('guest', 'Application\Controller\Index', 'index'),
-   //         array('guest', 'Application\Controller\Mock', 'index'),
-   //         array('guest', 'Application\Controller\Mock', 'add'),
-   //     );
-        
-        $rules = $this->dbMapper->getRulesForRole($role);
+    {     
+        $rules = $this->ruleMapper->getRules();
         
         foreach($rules as $rule){
             if (!$this->acl->hasResource($rule->getResource())){
@@ -49,5 +45,45 @@ class AclService
             $this->acl->allow($rule->getRole(), $rule->getResource(), $rule->getPriviledge());
         } 
     }
+    
+    private function loadRoles()
+    {  
+        $previousRole = '';
+        $parents = array();
+        
+        $roles = $this->roleMapper->getRoles();
+        foreach($roles as $current)
+        {
+            $currentRole   = $current->getRole();
+            $currentParent = $current->getParent();
+                   
+            if (($currentRole != $previousRole) && ($previousRole != '')){
+                            
+                // Push the previous role onto the acl.
+                if (empty($parents)){
+                    $parents = null;
+                }
+                $this->acl->addRole(new GenericRole($previousRole), $parents);
+                $parents = array();
+                
+            }
+            
+            if (null != $currentParent){
+                array_push($parents, $currentParent);
+            }
+            
+            $previousRole = $currentRole;
+        }
+        
+        if ($previousRole != ''){
+                
+            // Push the previous role onto the acl.
+            if (empty($parents)){
+                $parents = null;
+            }
+            $this->acl->addRole(new GenericRole($previousRole), $parents);
+            $parents = array();
+        }
+    }  
 }
 
