@@ -5,6 +5,12 @@ CREATE TABLE access_role (
   parent   VarChar(64) COLLATE utf8_general_ci,
   priority Integer
 ) ENGINE=InnoDB;
+INSERT INTO access_role (role, parent, priority)
+VALUES ('guest', null, 0);
+INSERT INTO access_role (role, parent, priority)
+VALUES ('user', 0, 1);
+INSERT INTO access_role (role, parent, priority)
+VALUES ('admin', 1, 2);
 
 -- Rule Table
 CREATE TABLE access_rule (
@@ -16,5 +22,4 @@ CREATE TABLE access_rule (
       rule_id
   )
 ) ENGINE=InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-
 

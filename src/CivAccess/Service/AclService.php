@@ -34,6 +34,15 @@ class AclService
         return $this->acl->isAllowed($role, $resource, $priviledge);
     }
     
+    public function addRole($role, $parent)
+    {
+        $roleEntity = new \CivAccess\Role\Role();
+        $roleEntity->setRole($role)
+                   ->setParent($parent)
+                   ->setPriority(4);
+        $this->roleMapper->persist($roleEntity);
+    }
+    
     protected function loadRelevantRules($role)
     {     
         $rules = $this->ruleMapper->getRules();
