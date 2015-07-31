@@ -36,7 +36,6 @@ class RoleMapper extends AbstractDbMapper implements DbAdapterAwareInterface
     protected function insert($entity, $tableName = null, HydratorInterface $hydrator = null)
     {
         $result = parent::insert($entity, $tableName, $hydrator);
-        $entity->setCustomerId($result->getGeneratedValue());
         return $result;
     }
 }

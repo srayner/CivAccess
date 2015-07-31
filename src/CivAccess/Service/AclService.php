@@ -5,6 +5,7 @@ namespace CivAccess\Service;
 use Zend\Permissions\Acl\Acl;
 use Zend\Permissions\Acl\Role\GenericRole;
 use Zend\Permissions\Acl\Resource\GenericResource;
+use CivAccess\Acl\Role;
 
 class AclService
 {
@@ -36,11 +37,11 @@ class AclService
     
     public function addRole($role, $parent)
     {
-        $roleEntity = new \CivAccess\Role\Role();
+        $roleEntity = new Role();
         $roleEntity->setRole($role)
                    ->setParent($parent)
                    ->setPriority(4);
-        $this->roleMapper->persist($roleEntity);
+        $this->roleMapper->persistRole($roleEntity);
     }
     
     protected function loadRelevantRules($role)

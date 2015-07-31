@@ -2,6 +2,12 @@
 
 return array(
     
+    'CivAccess' => array(
+        'new_role_event_id'     => 'ZfcUser\Service\User',
+        'new_role_event'        => 'register.post',
+        'new_role_event_param'  => 'user'
+    ),
+    
     'service_manager' => array(
         'aliases' => array(
             'CivAccess\DbAdapter'   => 'Zend\Db\Adapter\Adapter',
