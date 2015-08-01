@@ -22,3 +22,19 @@ Rules define which privileges on a resource that a particular role has. Rules ar
 either this module to manage them, or your own module.
 
 
+## Installation
+
+To install this module into your ZF2 application;
+
+- Create an empty CivAccess folder inside your vendor folder.
+- Clone this git repository into your new CivAccess folder.
+- Active the new module by adding a 'CivAccess' entry under the 'Modules' key in your application config file.
+
+## Post Installation
+
+If you are using mySQL or Firebird for your database you can execute the applicable sql script found inside the \data folder.
+This will create two tables inside your database to stores roles and access rules.
+
+If you are using the zfcUser module for authentication and have not yet created your user database table, you can execute the
+relevant ..._zfcuser.sql file. This will create the user table and insert access rules for guest and user roles to access the
+standard zfcuser controllers and action.   
