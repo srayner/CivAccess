@@ -35,11 +35,11 @@ class Guard extends AbstractListenerAggregate
         $authService = $this->serviceLocator->get('CivAccess\AuthService');
         $match      = $event->getRouteMatch();
         $resource   = $match->getParam('controller');
-        $priviledge = $match->getParam('action');
+        $privilege = $match->getParam('action');
         
         // Check access.
         $role   = $authService->hasIdentity() ? (string)$authService->getIdentity()->getId() : 'guest';
-        $authorized = $aclService->isAllowed($role, $resource, $priviledge);
+        $authorized = $aclService->isAllowed($role, $resource, $privilege);
         
         // If authorized, no action is required.
         if ($authorized) {
@@ -47,11 +47,11 @@ class Guard extends AbstractListenerAggregate
         }
         
         // If not authorized, setup an exception and trigger a dispatch error.
-        $errorMessage = sprintf("You are not authorized to access %s:%s", $resource, $priviledge);
+        $errorMessage = sprintf("You are not authorized to access %s:%s", $resource, $privilege);
         $event->setError(static::ERROR);
         $event->setParam('role', $role);
         $event->setParam('resource', $resource);
-        $event->setParam('priviledge', $priviledge);
+        $event->setParam('privilege', $privilege);
         $event->setParam('exception', new UnAuthorizedException($errorMessage));
         $app->getEventManager()->trigger(MvcEvent::EVENT_DISPATCH_ERROR, $event);
     }

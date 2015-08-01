@@ -42,7 +42,7 @@ class RuleForm extends Form
         
         // Privilege
         $this->add(array(
-            'name' => 'priviledge',
+            'name' => 'privilege',
             'options' => array(
                 'label' => 'Privilege',
             ),

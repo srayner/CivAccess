@@ -22,17 +22,17 @@ class AclService
     }
    
     /**
-     * Checks the access control list to see if the role is allowed the required priviledge to the resource.
+     * Checks the access control list to see if the role is allowed the required privilege to the resource.
      * @param type $role
      * @param type $resource
      * 
      * @return boolean - true if the role is allowed access, false otherwise
      */
-    public function IsAllowed($role, $resource, $priviledge)
+    public function IsAllowed($role, $resource, $privilege)
     {
         $this->acl->addResource(New GenericResource($resource));
         $this->loadRelevantRules($role);
-        return $this->acl->isAllowed($role, $resource, $priviledge);
+        return $this->acl->isAllowed($role, $resource, $privilege);
     }
     
     public function addRole($role, $parent)
@@ -52,7 +52,7 @@ class AclService
             if (!$this->acl->hasResource($rule->getResource())){
                 $this->acl->addResource($rule->getResource());
             }
-            $this->acl->allow($rule->getRole(), $rule->getResource(), $rule->getPriviledge());
+            $this->acl->allow($rule->getRole(), $rule->getResource(), $rule->getPrivilege());
         } 
     }
     

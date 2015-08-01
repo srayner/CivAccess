@@ -7,7 +7,7 @@ class Rule implements RuleInterface
     protected $ruleId;
     protected $role;
     protected $resource;
-    protected $priviledge;
+    protected $privilege;
 
     public function getRuleId()
     {
@@ -42,14 +42,14 @@ class Rule implements RuleInterface
         return $this;
     }
     
-    public function getPriviledge()
+    public function getPrivilege()
     {
-        return $this->priviledge;
+        return $this->privilege;
     }
     
-    public function setPriviledge($priviledge)
+    public function setPrivilege($privilege)
     {
-        $this->priviledge = $priviledge;
+        $this->privilege = $privilege;
         return $this;
     }
 }

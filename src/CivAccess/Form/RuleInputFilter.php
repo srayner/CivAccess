@@ -44,7 +44,7 @@ class RuleInputFilter extends InputFilter
         
         // Privilege
         $this->add(array(
-            'name'       => 'priviledge',
+            'name'       => 'privilege',
             'required'   => true,
             'validators' => array(
                 array(

@@ -71,7 +71,7 @@ class DeniedStrategy implements ListenerAggregateInterface
             case Guard::ERROR:
                 $viewVariables['role'] = $event->getParam('role');
                 $viewVariables['resource'] = $event->getParam('resource');
-                $viewVariables['priviledge']     = $event->getParam('priviledge');
+                $viewVariables['privilege']     = $event->getParam('privilege');
                 break;
             case Application::ERROR_EXCEPTION:
                 if (!($event->getParam('exception') instanceof UnAuthorizedException)) {

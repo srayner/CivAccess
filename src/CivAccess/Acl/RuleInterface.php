@@ -8,6 +8,6 @@ interface RuleInterface
     public function setRole($role);
     public function getResource();
     public function setResource($resource);
-    public function getPriviledge();
-    public function setPriviledge($priviledge);
+    public function getPrivilege();
+    public function setPrivilege($privilege);
 }
