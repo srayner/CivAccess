@@ -94,6 +94,31 @@ class AclService
             $this->acl->addRole(new GenericRole($previousRole), $parents);
             $parents = array();
         }
-    }  
+    }
+    
+    public function deleteRuleById($ruleId)
+    {
+        return $this->ruleMapper->deleteRuleById($ruleId);
+    }
+    
+    public function getRules()
+    {
+        return $this->ruleMapper->getRules();
+    }
+    
+    public function getRuleById($ruleId)
+    {
+        return $this->ruleMapper->getRuleById($ruleId);
+    }
+    
+    public function persistRule($rule)
+    {
+        return $this->ruleMapper->persist($rule);
+    }
+    
+    public function persistRole($role)
+    {
+        return $this->roleMapper->persist($role);
+    }
 }
 

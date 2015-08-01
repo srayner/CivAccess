@@ -4,9 +4,21 @@ namespace CivAccess\Acl;
 
 class Rule implements RuleInterface
 {
+    protected $ruleId;
     protected $role;
     protected $resource;
     protected $priviledge;
+
+    public function getRuleId()
+    {
+        return $this->ruleId;
+    }
+    
+    public function setRuleId($ruleId)
+    {
+        $this->ruleId = $ruleId;
+        return $this;
+    }
     
     public function getRole()
     {

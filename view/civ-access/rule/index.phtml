@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-lg-8">     
+        <h1>Access Rules</h1>
+    </div>
+    <div class="col-lg-4">
+        <a style="margin-top: 20px;" class="pull-right btn btn-success btn-sm" href="<?php echo $this->url('civaccess/default', array('controller' => 'rule', 'action' => 'add'));?>">
+            <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;New Rule
+        </a>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Role</th>
+            <th>Resource</th>
+            <th>Privilege</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($this->rules as $rule):?>
+        <tr>
+            <td><?php echo $rule->getRole();?></td>
+            <td><?php echo $rule->getResource();?></td>
+            <td><?php echo $rule->getPriviledge();?></td>
+            <td style="width: 1%;" nowrap>
+                <a class="btn btn-sm btn-warning" href="<?php echo $this->url('civaccess/default', array('controller' => 'rule', 'action' => 'edit', 'id' => $rule->getRuleId()));?>">
+                    <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit
+                </a>
+                <a class="btn btn-sm btn-danger" href="<?php echo $this->url('civaccess/default', array('controller' => 'rule', 'action' => 'delete', 'id' => $rule->getRuleId()))?>">
+                    <span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Delete
+                </a>
+            </td>
+        </tr>
+        <?php endforeach;?>
+    </tbody>
+</table>
