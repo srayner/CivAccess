@@ -3,7 +3,7 @@
 create table access_role (
   role     nvarchar(64) not null collate utf8_general_ci,
   parent   nvarchar(64)     null collate utf8_general_ci,
-  priority integer,
+  priority integer
 ) ENGINE=InnoDB;
 
 -- Inbuilt default roles (do not delete).
@@ -24,7 +24,7 @@ create table access_rule (
 
 -- Some useful rules.
 INSERT INTO access_rule (role, resource, privilege) values ('guest', 'Application\\Controller\\Index', 'index');
-INSERT INTO access_rule (role, resource, privilege) values ('admin', 'CivAccess\\Controller\\Rules', 'index');
-INSERT INTO access_rule (role, resource, privilege) values ('admin', 'CivAccess\\Controller\\Rules', 'add');
-INSERT INTO access_rule (role, resource, privilege) values ('admin', 'CivAccess\\Controller\\Rules', 'edit');
-INSERT INTO access_rule (role, resource, privilege) values ('admin', 'CivAccess\\Controller\\Rules', 'delete');
+INSERT INTO access_rule (role, resource, privilege) values ('admin', 'CivAccess\\Controller\\Rule', 'index');
+INSERT INTO access_rule (role, resource, privilege) values ('admin', 'CivAccess\\Controller\\Rule', 'add');
+INSERT INTO access_rule (role, resource, privilege) values ('admin', 'CivAccess\\Controller\\Rule', 'edit');
+INSERT INTO access_rule (role, resource, privilege) values ('admin', 'CivAccess\\Controller\\Rule', 'delete');

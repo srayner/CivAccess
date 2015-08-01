@@ -1,0 +1,28 @@
+{
+    "name": "srayner/civaccess",
+    "type": "library",
+    "description": "ZF2 authorisation module",
+    "keywords": ["authorisation","access control", "acl", "zf2"],
+    "homepage": "https://github.com/srayner/civauth",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Steve Rayner",
+            "email": "srayner02@gmail.com",
+            "homepage": "http://zf2.civrays.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "2.*",
+        "zf-commons/zfc-base": "0.1.2"
+    },
+    "autoload": {
+        "psr-0": {
+            "BgOauthProvider": "src/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}
