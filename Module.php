@@ -13,7 +13,7 @@ class Module
         $serviceManager = $app->getServiceManager();
         $guards         = $serviceManager->get('CivAccess\Guards');
         $strategy       = $serviceManager->get('CivAccess\DeniedStrategy');
-        $config         = $this->getConfig()['CivAccess'];
+        $config         = $serviceManager->get('config')['CivAccess'];
         
         // Attach the guards as listeners.
         foreach ($guards as $guard) {
