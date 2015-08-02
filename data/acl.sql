@@ -1,15 +1,16 @@
 
 -- Role table.
 create table access_role (
-  role     nvarchar(64) not null collate utf8_general_ci,
-  parent   nvarchar(64)     null collate utf8_general_ci,
-  priority integer
+  role      nvarchar(64) not null collate utf8_general_ci,
+  parent    nvarchar(64)     null collate utf8_general_ci,
+  priority  integer,
+  role_type nvarchar(32) not null collate utf8_general_ci
 ) ENGINE=InnoDB;
 
 -- Inbuilt default roles (do not delete).
-insert into access_role (role, parent, priority) values ('guest', null, 0);
-insert into access_role (role, parent, priority) values ('user', 'guest', 1);
-insert into access_role (role, parent, priority) values ('admin', 'user', 2);
+insert into access_role (role, parent, priority) values ('guest', null, 0, 'Built in role.');
+insert into access_role (role, parent, priority) values ('user', 'guest', 1, 'Built in role.');
+insert into access_role (role, parent, priority) values ('admin', 'user', 2, 'Built in role.');
 
 -- Rule table.
 create table access_rule (

@@ -9,6 +9,10 @@ class RoleController extends AbstractActionController
 {
     public function indexAction()
     {
-        return new ViewModel;
+        $aclService = $this->getServiceLocator()->get('CivAccess\AclService');
+        $roles = $aclService->getRoles();
+        return array(
+            'roles' => $roles
+        );
     }
 }

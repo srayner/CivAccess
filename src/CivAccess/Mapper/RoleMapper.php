@@ -10,10 +10,13 @@ class RoleMapper extends AbstractDbMapper implements DbAdapterAwareInterface
 {
     protected $tableName = 'access_role';
     
-    public function getRoles()
+    public function getRoles($where = null)
     {
-        $select = $this->getSelect()
-                       ->order(array('priority', 'role'));
+        $select = $this->getSelect();
+        if (null != $where){
+            $select->where($where);
+        }
+        $select->order(array('priority', 'role'));
         return $this->select($select);
     }
     

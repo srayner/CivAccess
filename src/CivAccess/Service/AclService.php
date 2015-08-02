@@ -100,6 +100,13 @@ class AclService
     {
         return $this->ruleMapper->deleteRuleById($ruleId);
     }
+
+    public function getRoles()
+    {
+        // Exclude user roles.
+        $where = 'priority <> 4';
+        return $this->roleMapper->getRoles($where);
+    }
     
     public function getRules()
     {

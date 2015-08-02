@@ -1,0 +1,21 @@
+<h1>Access Roles</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Role</th>
+            <th>Inherits From</th>
+            <th>Priority</th>
+            <th>Role Type</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach($this->roles as $role): ?>
+        <tr>
+            <td><?php echo $role->getRole();?></td>
+            <td><?php echo $role->getParent();?></td>
+            <td><?php echo $role->getPriority();?></td>
+            <td><?php echo $role->getRoleType();?></td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>

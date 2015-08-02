@@ -7,6 +7,7 @@ class Role implements RoleInterface
     protected $role;
     protected $parent;
     protected $priority;
+    protected $roleType;
     
     public function getRole()
     {
@@ -38,6 +39,17 @@ class Role implements RoleInterface
     public function setPriority($priority)
     {
         $this->priority = $priority;
+        return $this;
+    }
+    
+    public function getRoleType()
+    {
+        return $this->roleType;
+    }
+    
+    public function setRoleType($roleType)
+    {
+        $this->roleType = $roleType;
         return $this;
     }
 }
