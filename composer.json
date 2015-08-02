@@ -9,7 +9,8 @@
         {
             "name": "Steve Rayner",
             "email": "srayner02@gmail.com",
-            "homepage": "http://zf2.civrays.com"
+            "homepage": "http://zf2.civrays.com",
+            "role": "Developer"
         }
     ],
     "require": {
