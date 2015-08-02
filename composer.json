@@ -3,7 +3,7 @@
     "type": "library",
     "description": "ZF2 authorisation module",
     "keywords": ["authorisation","access control", "acl", "zf2"],
-    "homepage": "https://github.com/srayner/civauth",
+    "homepage": "https://github.com/srayner/civaccess",
     "license": "MIT",
     "authors": [
         {
@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-0": {
-            "BgOauthProvider": "src/"
+            "CivAccess": "src/"
         },
         "classmap": [
             "./Module.php"
