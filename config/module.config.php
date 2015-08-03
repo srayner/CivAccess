@@ -22,6 +22,7 @@ return array(
                         'action'        => 'index',
                     ),
                 ),
+                'priority' => '500',
                 'may_terminate' => true,
                 'child_routes' => array(
                     'default' => array(
