@@ -40,7 +40,8 @@ class AclService
         $roleEntity = new Role();
         $roleEntity->setRole($role)
                    ->setParent($parent)
-                   ->setPriority(4);
+                   ->setPriority(4)
+                   ->setRoleType('User role.');
         $this->roleMapper->persistRole($roleEntity);
     }
     
