@@ -37,4 +37,12 @@ This will create two tables inside your database to stores roles and access rule
 
 If you are using the zfcUser module for authentication and have not yet created your user database table, you can execute the
 relevant ..._zfcuser.sql file. This will create the user table and insert access rules for guest and user roles to access the
-standard zfcuser controllers and action.   
+standard zfcuser controllers and action.
+
+#Create initial admin user
+In order to start administering the system you will need to assign at least one user with the admin role. Because we don't yet
+have an admin user, this needs to be done manually by inserting a record into the access_role database table.
+
+To do this, execute the create_admin.sql (found in the data folder) on your database. Substituting the user_id value with the
+id of your user.    
+ 
