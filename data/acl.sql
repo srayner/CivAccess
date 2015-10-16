@@ -8,9 +8,9 @@ create table access_role (
 ) ENGINE=InnoDB;
 
 -- Inbuilt default roles (do not delete).
-insert into access_role (role, parent, priority) values ('guest', null, 0, 'Built in role.');
-insert into access_role (role, parent, priority) values ('user', 'guest', 1, 'Built in role.');
-insert into access_role (role, parent, priority) values ('admin', 'user', 2, 'Built in role.');
+insert into access_role (role, parent, priority, role_type) values ('guest', null, 0, 'Built in role.');
+insert into access_role (role, parent, priority, role_type) values ('user', 'guest', 1, 'Built in role.');
+insert into access_role (role, parent, priority, role_type) values ('admin', 'user', 2, 'Built in role.');
 
 -- Rule table.
 create table access_rule (
