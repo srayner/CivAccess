@@ -39,7 +39,7 @@ If you are using the zfcUser module for authentication and have not yet created 
 relevant ..._zfcuser.sql file. This will create the user table and insert access rules for guest and user roles to access the
 standard zfcuser controllers and action.
 
-#Create initial admin user
+###Create initial admin user
 In order to start administering the system you will need to assign at least one user with the admin role. Because we don't yet
 have an admin user, this needs to be done manually by inserting a record into the access_role database table.
 
