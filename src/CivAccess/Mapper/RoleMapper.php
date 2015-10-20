@@ -30,6 +30,11 @@ class RoleMapper extends AbstractDbMapper implements DbAdapterAwareInterface
         $this->insert($role, null, null);
     }
     
+    public function deleteRole($role)
+    {
+        parent::delete(array('role' => $role));
+    }
+    
     /**
      * @param object|array $entity
      * @param string|TableIdentifier|null $tableName

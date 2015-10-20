@@ -6,7 +6,10 @@ return array(
     'CivAccess' => array(
         'new_role_event_id'     => 'ZfcUser\Service\User',
         'new_role_event'        => 'register.post',
-        'new_role_event_param'  => 'user'
+        'new_role_event_param'  => 'user',
+        'old_role_event_id'     => '',
+        'old_role_event'        => 'delete.post',
+        'old_role_event_param'  => 'id'
     ),
     
     // Router configuration.

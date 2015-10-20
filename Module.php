@@ -34,6 +34,17 @@ class Module
             }, 100);
         }
         
+        // listen for deleted roles (if configured)
+        if ($config['old_role_event_id'] != '') { 
+            $param = $config['old_role_event_param'];
+            $sharedEventManager = $eventManager->getSharedManager();
+            $sharedEventManager->attach($config['old_role_event_id'], $config['old_role_event'], function($e) use($serviceManager, $param) {
+                $role = $e->getParam($param);
+                $service = $serviceManager->get('CivAccess\AclService');
+                $service->deleteRole($role);
+            }, 100);
+        }
+        
     }
     
     public function getAutoloaderConfig()

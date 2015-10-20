@@ -128,5 +128,10 @@ class AclService
     {
         return $this->roleMapper->persist($role);
     }
+    
+    public function deleteRole($role)
+    {
+        return $this->roleMapper->deleteRole($role);
+    }
 }
 
