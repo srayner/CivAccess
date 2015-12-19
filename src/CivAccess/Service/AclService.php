@@ -40,7 +40,6 @@ class AclService
         $roleEntity = new Role();
         $roleEntity->setRole($role)
                    ->setParent($parent)
-                   ->setPriority(4)
                    ->setRoleType('User role.');
         $this->roleMapper->persistRole($roleEntity);
     }
@@ -57,43 +56,47 @@ class AclService
         } 
     }
     
-    private function loadRoles()
-    {  
-        $previousRole = '';
-        $parents = array();
+    public function loadRoles()
+    {
+        $map = array();
         
         $roles = $this->roleMapper->getRoles();
-        foreach($roles as $current)
+        foreach($roles as $role)
         {
-            $currentRole   = $current->getRole();
-            $currentParent = $current->getParent();
-                   
-            if (($currentRole != $previousRole) && ($previousRole != '')){
-                            
-                // Push the previous role onto the acl.
-                if (empty($parents)){
-                    $parents = null;
+            $roleName = $role->getRole();
+            $parentName = $role->getParent();
+            
+            if (key_exists($roleName, $map)) {
+                if (null != $parentName) {
+                    array_push($map[$roleName], $parentName);
                 }
-                $this->acl->addRole(new GenericRole($previousRole), $parents);
-                $parents = array();
-                
+            } else {
+                $map[$roleName] = (null != $parentName ? array($parentName) : null);
             }
-            
-            if (null != $currentParent){
-                array_push($parents, $currentParent);
+        }
+        foreach($map as $role => $parents) {
+            $this->loadRole($map, $role, $parents);
+        }
+    }
+    
+    private function loadRole($map, $role, $parents)
+    {
+        // Check parents are loaded
+        if (null != $parents) {
+            foreach($parents as $parent)
+            {
+                if (!$this->acl->hasRole($parent)) {
+                    $r = $parent;
+                    $p = $map[$parent];
+                    $this->loadRole($map, $r, $p);
+                }
             }
-            
-            $previousRole = $currentRole;
         }
         
-        if ($previousRole != ''){
-                
-            // Push the previous role onto the acl.
-            if (empty($parents)){
-                $parents = null;
-            }
-            $this->acl->addRole(new GenericRole($previousRole), $parents);
-            $parents = array();
+        // load the role
+        if (!$this->acl->hasRole($role)) {
+            $genericRole = new GenericRole($role);
+            $this->acl->addRole($genericRole, $parents);
         }
     }
     
@@ -105,7 +108,7 @@ class AclService
     public function getRoles()
     {
         // Exclude user roles.
-        $where = 'priority <> 4';
+        $where = "role_type <> 'User role.'";
         return $this->roleMapper->getRoles($where);
     }
     
