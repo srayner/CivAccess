@@ -16,7 +16,6 @@ class RoleMapper extends AbstractDbMapper implements DbAdapterAwareInterface
         if (null != $where){
             $select->where($where);
         }
-        $select->order(array('priority', 'role'));
         return $this->select($select);
     }
     
