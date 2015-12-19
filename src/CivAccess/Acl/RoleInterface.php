@@ -8,6 +8,6 @@ interface RoleInterface
     public function setRole($role);
     public function getParent();
     public function setParent($parent);
-    public function getPriority();
-    public function setPriority($priority);
+    public function getRoleType();
+    public function setRoleType($roleType);
 }

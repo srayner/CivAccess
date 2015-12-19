@@ -40,7 +40,6 @@ class AclService
         $roleEntity = new Role();
         $roleEntity->setRole($role)
                    ->setParent($parent)
-                   ->setPriority(4)
                    ->setRoleType('User role.');
         $this->roleMapper->persistRole($roleEntity);
     }
@@ -109,7 +108,7 @@ class AclService
     public function getRoles()
     {
         // Exclude user roles.
-        $where = 'priority <> 4';
+        $where = "role_type <> 'User role.'";
         return $this->roleMapper->getRoles($where);
     }
     
