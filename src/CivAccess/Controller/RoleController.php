@@ -15,4 +15,14 @@ class RoleController extends AbstractActionController
             'roles' => $roles
         );
     }
+    
+    public function addAction()
+    {
+        return array();
+    }
+    
+    public function deleteAction()
+    {
+        return array();
+    }
 }

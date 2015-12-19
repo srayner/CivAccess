@@ -1,11 +1,21 @@
-<h1>Access Roles</h1>
+<div class="row">
+    <div class="col-lg-8">     
+        <h1>Access Roles</h1>
+    </div>
+    <div class="col-lg-4">
+        <a style="margin-top: 20px;" class="pull-right btn btn-success btn-sm" href="<?php echo $this->url('civaccess/default', array('controller' => 'role', 'action' => 'add'));?>">
+            <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;New Role
+        </a>
+    </div>
+</div>
+
 <table class="table">
     <thead>
         <tr>
             <th>Role</th>
             <th>Inherits From</th>
-            <th>Priority</th>
             <th>Role Type</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -13,8 +23,12 @@
         <tr>
             <td><?php echo $role->getRole();?></td>
             <td><?php echo $role->getParent();?></td>
-            <td><?php echo $role->getPriority();?></td>
             <td><?php echo $role->getRoleType();?></td>
+            <td style="width: 1%;" nowrap>
+                <a class="btn btn-sm btn-danger" href="<?php echo $this->url('civaccess/default', array('controller' => 'role', 'action' => 'delete', 'id' => $role->getRole()))?>">
+                    <span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Delete
+                </a>
+            </td>
         </tr>
     <?php endforeach; ?>
     </tbody>
