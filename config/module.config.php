@@ -47,8 +47,10 @@ return array(
     
     'controllers' => array(
         'invokables' => array(
-            'CivAccess\Controller\Rule' => 'CivAccess\Controller\RuleController',
-            'CivAccess\Controller\Role'  => 'CivAccess\Controller\RoleController',
+            'CivAccess\Controller\Rule'      => 'CivAccess\Controller\RuleController',
+            'CivAccess\Controller\Role'      => 'CivAccess\Controller\RoleController',
+            'CivAccess\Controller\Rresource' => 'CivAccess\Controller\ResourceController',
+            'CivAccess\Controller\Privilege' => 'CivAccess\Controller\PrivilegeController',
         ),    
     ),
     
@@ -59,15 +61,21 @@ return array(
             'CivAccess\AuthService' => 'zfcuser_auth_service'
         ),
         'invokables' => array(
-            'CivAccess\Rule' => 'CivAccess\Acl\Rule',    
+            'CivAccess\Rule'        => 'CivAccess\Acl\Rule',
+            'CivAccess\Role'        => 'CivAccess\Acl\Role',
+            'CivAccess\Resource'    => 'CivAccess\Acl\Resource',
+            'CivAccess\Privilege'   => 'CivAccess\Acl\Privilege',
         ),
         'factories' => array(
-            'CivAccess\Guards'         => 'CivAccess\Guard\GuardsFactory',
-            'CivAccess\DeniedStrategy' => 'CivAccess\Strategy\DeniedStrategyFactory',
-            'CivAccess\AclService'     => 'CivAccess\Service\AclServiceFactory',
-            'CivAccess\RuleMapper'     => 'CivAccess\Mapper\RuleMapperFactory',
-            'CivAccess\RoleMapper'     => 'CivAccess\Mapper\RoleMapperFactory',
-            'CivAccess\RuleForm'       => 'CivAccess\Form\RuleFormFactory'
+            'CivAccess\Guards'          => 'CivAccess\Guard\GuardsFactory',
+            'CivAccess\DeniedStrategy'  => 'CivAccess\Strategy\DeniedStrategyFactory',
+            'CivAccess\AclService'      => 'CivAccess\Service\AclServiceFactory',
+            'CivAccess\RuleMapper'      => 'CivAccess\Mapper\RuleMapperFactory',
+            'CivAccess\RoleMapper'      => 'CivAccess\Mapper\RoleMapperFactory',
+            'CivAccess\ResourceMapper'  => 'CivAccess\Mapper\ResourceMapperFactory',
+            'CivAccess\PrivilegeMapper' => 'CivAccess\Mapper\PrivilegeMapperFactory',
+            'CivAccess\RuleForm'        => 'CivAccess\Form\RuleFormFactory',
+            'CivAccess\RoleForm'        => 'CivAccess\Form\RoleFormFactory'
         ),    
     ),
     
