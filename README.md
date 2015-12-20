@@ -8,7 +8,7 @@ This module should be used in conjunction with a separate authorisation module. 
 
 The persistence layer is abstracted away with no dependency upon any particular database vendor. You should be able to use any
 database that has a PHP PDO driver available. This module has no dependencies on any particular authentication module. However
-it does require an authentication service that can provide an identity object via a getIdentity() method, an the identity object
+it does require an authentication service that can provide an identity object via a getIdentity() method, and the identity object
 should provide a getId() method to retrieve the identifier.
 
 Roles represent users and groups. Because Zend\Permission\Acl supports multiple inheritance, users can be a member of more than
@@ -16,7 +16,7 @@ one group. Roles and their parent groups are stored in a simple database table. 
 or use your own module to manipulate the database table. There are some built in roles such as; guest, user and admin, that should
 not be deleted, but you can also add your own roles.
 
-Resources are mapped to controllers and privileges are mapped to action. This keeps things simple to understand and manage.
+Resources are mapped to controllers and privileges are mapped to actions. This keeps things simple to understand and manage.
 
 Rules define which privileges on a resource that a particular role has. Rules are also stored in a database table. Again use
 either this module to manage them, or your own module.
