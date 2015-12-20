@@ -4,10 +4,22 @@ namespace CivAccess\Acl;
 
 class Role implements RoleInterface
 {
+    protected $roleId;
     protected $role;
     protected $parent;
     protected $roleType;
     
+    public function getRoleId()
+    {
+        return $this->roleId;
+    }
+
+    public function setRoleId($roleId)
+    {
+        $this->roleId = $roleId;
+        return $this;
+    }
+
     public function getRole()
     {
         return $this->role;

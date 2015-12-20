@@ -25,7 +25,10 @@
             <td><?php echo $role->getParent();?></td>
             <td><?php echo $role->getRoleType();?></td>
             <td style="width: 1%;" nowrap>
-                <a class="btn btn-sm btn-danger" href="<?php echo $this->url('civaccess/default', array('controller' => 'role', 'action' => 'delete', 'id' => $role->getRole()))?>">
+                <a class="btn btn-sm btn-warning" href="<?php echo $this->url('civaccess/default', array('controller' => 'role', 'action' => 'edit', 'id' => $role->getRoleId()))?>">
+                    <span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Edit
+                </a>
+                <a class="btn btn-sm btn-danger" href="<?php echo $this->url('civaccess/default', array('controller' => 'role', 'action' => 'delete', 'id' => $role->getRoleId()))?>">
                     <span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Delete
                 </a>
             </td>

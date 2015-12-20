@@ -1,9 +1,13 @@
 
 -- Role table.
 create table access_role (
-  role      nvarchar(64) not null collate utf8_general_ci,
-  parent    nvarchar(64)     null collate utf8_general_ci,
-  role_type nvarchar(32) not null collate utf8_general_ci
+    role_id   integer(11)  not null auto_increment,
+    role      nvarchar(64) not null collate utf8_general_ci,
+    parent    nvarchar(64)     null collate utf8_general_ci,
+    role_type nvarchar(32) not null collate utf8_general_ci,
+    primary key (
+        role_id
+    )
 ) ENGINE=InnoDB;
 
 -- Inbuilt default roles (do not delete).
@@ -13,12 +17,12 @@ insert into access_role (role, parent, role_type) values ('admin', 'user', 'Buil
 
 -- Resources table.
 create table access_resource (
-  resource_id    integer(11)   not null auto_increment,
-  resource       nvarchar(128) not null collate utf8_general_ci,
-  display_name   nvarchar(64)  not null collate utf8_general_ci,
-  primary key (
-      resource_id
-  )
+    resource_id    integer(11)   not null auto_increment,
+    resource       nvarchar(128) not null collate utf8_general_ci,
+    display_name   nvarchar(64)  not null collate utf8_general_ci,
+    primary key (
+        resource_id
+    )
 ) ENGINE=InnoDB;
 
 -- Resources.
@@ -29,13 +33,13 @@ insert into access_resource (resource_id, resource, display_name) values (4, 'Ci
 
 -- Privileges table.
 create table access_privilege (
-  privilege_id   integer(11)  not null auto_increment,
-  resource_id    integer(11) not null,
-  privilege      nvarchar(64) not null collate utf8_general_ci,
-  display_name   nvarchar(64) not null collate utf8_general_ci,
-  primary key (
-      privilege_id
-  )
+    privilege_id   integer(11)  not null auto_increment,
+    resource_id    integer(11) not null,
+    privilege      nvarchar(64) not null collate utf8_general_ci,
+    display_name   nvarchar(64) not null collate utf8_general_ci,
+    primary key (
+        privilege_id
+    )
 ) ENGINE=InnoDB;
 
 -- Privileges.
@@ -58,13 +62,13 @@ insert into access_privilege (resource_id, privilege, display_name) values (4, '
 
 -- Rule table.
 create table access_rule (
-  rule_id    integer(11) not null auto_increment,
-  role       nvarchar(64)  not null collate utf8_general_ci,
-  resource   nvarchar(128)     null collate utf8_general_ci,
-  privilege nvarchar(64)      null collate utf8_general_ci, 
-  primary key (
-      rule_id
-  )
+    rule_id    integer(11) not null auto_increment,
+    role       nvarchar(64)  not null collate utf8_general_ci,
+    resource   nvarchar(128)     null collate utf8_general_ci,
+    privilege nvarchar(64)      null collate utf8_general_ci, 
+    primary key (
+        rule_id
+    )
 ) ENGINE=InnoDB;
 
 -- Some useful rules.

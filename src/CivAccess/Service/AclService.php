@@ -104,13 +104,6 @@ class AclService
     {
         return $this->ruleMapper->deleteRuleById($ruleId);
     }
-
-    public function getRoles()
-    {
-        // Exclude user roles.
-        $where = "role_type <> 'User role.'";
-        return $this->roleMapper->getRoles($where);
-    }
     
     public function getRules()
     {
@@ -127,14 +120,26 @@ class AclService
         return $this->ruleMapper->persist($rule);
     }
     
+    public function getRoles()
+    {
+        // Exclude user roles.
+        $where = "role_type <> 'User role.'";
+        return $this->roleMapper->getRoles($where);
+    }
+    
+    public function getRoleById($roleId)
+    {
+        return $this->roleMapper->getRoleById($roleId);
+    }
+    
     public function persistRole($role)
     {
         return $this->roleMapper->persist($role);
     }
     
-    public function deleteRole($role)
+    public function deleteRoleById($roleId)
     {
-        return $this->roleMapper->deleteRole($role);
+        return $this->roleMapper->deleteRole($roleId);
     }
 }
 

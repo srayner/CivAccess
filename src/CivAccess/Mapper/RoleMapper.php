@@ -3,6 +3,7 @@
 namespace CivAccess\Mapper;
 
 use ZfcBase\Mapper\AbstractDbMapper;
+use Zend\Stdlib\Hydrator\ClassMethods;
 use Zend\Db\Adapter\Adapter;
 use Zend\Stdlib\Hydrator\HydratorInterface;
 
@@ -19,19 +20,31 @@ class RoleMapper extends AbstractDbMapper implements DbAdapterAwareInterface
         return $this->select($select);
     }
     
+    public function getRoleById($roleId)
+    {
+        $select = $this->getSelect()
+                       ->where(array('role_id' => $roleId));
+        return $this->select($select)->current();
+    }
+    
     public function setDbAdapter(Adapter $dbAdapter)
     {
         $this->dbAdapter = $dbAdapter;
     }
     
-    public function persistRole($role)
+    public function persist($role)
     {
-        $this->insert($role, null, null);
+        if ($role->getRoleId() > 0) {
+            $this->update($role, null, null, new ClassMethods());
+        } else {
+            $this->insert($role, null, new ClassMethods());
+        }
+        return $role; 
     }
     
-    public function deleteRole($role)
+    public function deleteRoleById($roleId)
     {
-        parent::delete(array('role' => $role));
+        parent::delete(array('role_id' => $roleId));
     }
     
     /**
@@ -44,5 +57,13 @@ class RoleMapper extends AbstractDbMapper implements DbAdapterAwareInterface
     {
         $result = parent::insert($entity, $tableName, $hydrator);
         return $result;
+    }
+    
+    protected function update($entity, $where = null, $tableName = null, HydratorInterface $hydrator = null)
+    {
+        if (!$where) {
+            $where = 'role_id = ' . $entity->getRoleId();
+        }
+        return parent::update($entity, $where, $tableName, $hydrator);
     }
 }

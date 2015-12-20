@@ -1,10 +1,10 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1>Add new role</h1>
+        <h1>Edit role</h1>
         
         <?php
             $form = $this->form;
-            $form->setAttribute('action', $this->url('civaccess/default', array('controller' => 'role', 'action' => 'add')))
+            $form->setAttribute('action', $this->url('civaccess/default', array('controller' => 'role', 'action' => 'edit', 'id' => $this->roleId)))
                  ->prepare();
             echo $this->form()->openTag($form);
         ?>
