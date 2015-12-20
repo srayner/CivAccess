@@ -98,6 +98,29 @@ class RoleController extends AbstractActionController
     
     public function deleteAction()
     {
-        return array();
+        // Ensure we have a role id, if not redirect to role list
+        $id = (int) $this->params()->fromRoute('id', 0);
+        if (!$id) {
+            return $this->redirect()->toRoute('civaccess/default', array('controller' => 'role'));
+        }
+        
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            
+            // Only perform delete if value posted was 'Yes'.
+            $del = $request->getPost('del', 'No');
+            if ($del == 'Yes') {
+                $id = (int) $request->getPost('id');
+                $this->getAclService()->deleteRoleById($id);
+            }
+
+            // Redirect to list of jobs
+            return $this->redirect()->toRoute('civaccess/default', array('controller' => 'role'));
+         }
+        
+        // If not a POST request, then render the confirmation page.
+        return array(
+            'role' => $this->getAclService()->getRoleById($id)    
+        );
     }
 }

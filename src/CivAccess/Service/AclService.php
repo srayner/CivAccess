@@ -41,7 +41,7 @@ class AclService
         $roleEntity->setRole($role)
                    ->setParent($parent)
                    ->setRoleType('User role.');
-        $this->roleMapper->persistRole($roleEntity);
+        $this->roleMapper->persist($roleEntity);
     }
     
     protected function loadRelevantRules($role)
@@ -139,7 +139,7 @@ class AclService
     
     public function deleteRoleById($roleId)
     {
-        return $this->roleMapper->deleteRole($roleId);
+        return $this->roleMapper->deleteRoleById($roleId);
     }
 }
 
