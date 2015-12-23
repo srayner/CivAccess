@@ -2,27 +2,12 @@
 
 namespace CivAccess\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
-
-class RoleController extends AbstractActionController
-{
-    protected $aclService;
-    
-    protected function getAclService()
-    {
-        if (null === $this->aclService){
-            $this->aclService = $this->getServiceLocator()->get('CivAccess\AclService');
-        }
-        return $this->aclService;
-    }
-    
+class RoleController extends AbstractAclController
+{   
     public function indexAction()
     {
-        $aclService = $this->getServiceLocator()->get('CivAccess\AclService');
-        $roles = $aclService->getRoles();
         return array(
-            'roles' => $roles
+            'roles' => $this->getAclService()->getRoles()
         );
     }
     
@@ -45,8 +30,7 @@ class RoleController extends AbstractActionController
                 
                 // Save new rule to database.
                 $role->setRoleType('Group role.');
-                $aclService = $this->getAclService();
-                $aclService->persistRole($role);
+                $this->getAclService()->persistRole($role);
                 
                 // Redirect to roles index page.
                 return $this->redirect()->toRoute('civaccess/default', array('controller' => 'role'));
@@ -85,7 +69,7 @@ class RoleController extends AbstractActionController
                 // Persist role.
                 $this->getAclService()->persistRole($role);
                 
-                // Redirect to list of jobs
+                // Redirect to list of roles.
                 return $this->redirect()->toRoute('civaccess/default', array('controller' => 'role'));
             }     
         }
@@ -114,7 +98,7 @@ class RoleController extends AbstractActionController
                 $this->getAclService()->deleteRoleById($id);
             }
 
-            // Redirect to list of jobs
+            // Redirect to list of roles.
             return $this->redirect()->toRoute('civaccess/default', array('controller' => 'role'));
          }
         

@@ -2,37 +2,37 @@
 
 namespace CivAccess\Controller;
 
-class RuleController extends AbstractAclController
+class ResourceController extends AbstractAclController
 {
     public function indexAction()
     {
         return array(
-            'rules' => $this->getAclService()->getRules()
+            'resources' => $this->getAclService()->getResources()
         );
     }
     
     public function addAction()
     {
         // Create a new form instance.
-        $form = $this->serviceLocator->get('CivAccess\RuleForm');
+        $form = $this->serviceLocator->get('CivAccess\ResourceForm');
        
         // Check if this is a POST request.
         $request = $this->getRequest();
         if ($request->isPost())
         {
-            // Bind the form to the rule entity, and set the data from post.
-            $rule = $this->serviceLocator->get('CivAccess\Rule');
-            $form->bind($rule);
+            // Bind the form to the resource entity, and set the data from post.
+            $resource = $this->serviceLocator->get('CivAccess\Resource');
+            $form->bind($resource);
             $form->setData($request->getPost());
             
             // Check if data is valid.
             if ($form->isValid()) {
                 
                 // Save new rule to database.
-                $this->getAclService()->persistRule($rule);
+                $this->getAclService()->persistResource($resource);
                 
-                // Redirect to rules index page.
-                return $this->redirect()->toRoute('civaccess/default', array('controller' => 'rule'));
+                // Redirect to resources index page.
+                return $this->redirect()->toRoute('civaccess/default', array('controller' => 'resource'));
             }
         }
         
@@ -48,15 +48,15 @@ class RuleController extends AbstractAclController
         $id = (int) $this->params()->fromRoute('id', 0);
         if (!$id) {
              return $this->redirect()->toRoute('civaccess/default', array(
-                 'controller' => 'rule',
+                 'controller' => 'resource',
                  'action' => 'add'
              ));
         }
         
-        // Grab the rule with the specified id.
-        $rule = $this->getAclService()->getRuleById($id);
-        $form = $this->getServiceLocator()->get('CivAccess\RuleForm');
-        $form->bind($rule);
+        // Grab the resource with the specified id.
+        $resource = $this->getAclService()->getRuleById($id);
+        $form = $this->getServiceLocator()->get('CivAccess\ResourceForm');
+        $form->bind($resource);
         $form->get('submit')->setAttribute('value', 'Edit');
         
         $request = $this->getRequest();
@@ -66,25 +66,25 @@ class RuleController extends AbstractAclController
             if ($form->isValid()) {
                 
                 // Persist rule.
-                $this->getAclService()->persistRule($rule);
+                $this->getAclService()->persistRule($resource);
                 
-                // Redirect to list of rules.
-                return $this->redirect()->toRoute('civaccess/default', array('controller' => 'rule'));
+                // Redirect to list of resources.
+                return $this->redirect()->toRoute('civaccess/default', array('controller' => 'resource'));
             }     
         }
         
         return array(
-             'ruleId' => $id,
+             'resourceId' => $id,
              'form' => $form,
         );
     }
     
     public function deleteAction()
     {
-        // Ensure we have a rule id, if not redirect to rule list
+        // Ensure we have an id, if not redirect to resource list
         $id = (int) $this->params()->fromRoute('id', 0);
         if (!$id) {
-            return $this->redirect()->toRoute('civaccess/default', array('controller' => 'rule'));
+            return $this->redirect()->toRoute('civaccess/default', array('controller' => 'resource'));
         }
         
         $request = $this->getRequest();
@@ -94,16 +94,16 @@ class RuleController extends AbstractAclController
             $del = $request->getPost('del', 'No');
             if ($del == 'Yes') {
                 $id = (int) $request->getPost('id');
-                $this->getAclService()->deleteRuleById($id);
+                $this->getAclService()->deleteResourceById($id);
             }
 
-            // Redirect to list of rules.
-            return $this->redirect()->toRoute('civaccess/default', array('controller' => 'rule'));
+            // Redirect to list of resources.
+            return $this->redirect()->toRoute('civaccess/default', array('controller' => 'resources'));
          }
         
         // If not a POST request, then render the confirmation page.
         return array(
-            'rule' => $this->getAclService()->getRuleById($id)    
+            'resource' => $this->getAclService()->getResourceById($id)    
         );
     }
 }
