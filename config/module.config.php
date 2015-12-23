@@ -75,7 +75,9 @@ return array(
             'CivAccess\ResourceMapper'  => 'CivAccess\Mapper\ResourceMapperFactory',
             'CivAccess\PrivilegeMapper' => 'CivAccess\Mapper\PrivilegeMapperFactory',
             'CivAccess\RuleForm'        => 'CivAccess\Form\RuleFormFactory',
-            'CivAccess\RoleForm'        => 'CivAccess\Form\RoleFormFactory'
+            'CivAccess\RoleForm'        => 'CivAccess\Form\RoleFormFactory',
+            'CivAccess\ResourceForm'    => 'CivAccess\Form\ResourceFormFactory',
+            'CivAccess\PrivilegeForm'   => 'CivAccess\Form\PrivilegeFormFactory',
         ),    
     ),
     
