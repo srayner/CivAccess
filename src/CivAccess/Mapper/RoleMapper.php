@@ -2,12 +2,11 @@
 
 namespace CivAccess\Mapper;
 
-use ZfcBase\Mapper\AbstractDbMapper;
 use Zend\Stdlib\Hydrator\ClassMethods;
-use Zend\Db\Adapter\Adapter;
 use Zend\Stdlib\Hydrator\HydratorInterface;
+use ZfcBase\Mapper\AbstractDbMapper;
 
-class RoleMapper extends AbstractDbMapper implements DbAdapterAwareInterface
+class RoleMapper extends AbstractDbMapper implements RoleMapperInterface
 {
     protected $tableName = 'access_role';
     
@@ -25,11 +24,6 @@ class RoleMapper extends AbstractDbMapper implements DbAdapterAwareInterface
         $select = $this->getSelect()
                        ->where(array('role_id' => $roleId));
         return $this->select($select)->current();
-    }
-    
-    public function setDbAdapter(Adapter $dbAdapter)
-    {
-        $this->dbAdapter = $dbAdapter;
     }
     
     public function persist($role)

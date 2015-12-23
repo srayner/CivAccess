@@ -2,7 +2,7 @@
 
 namespace CivAccess\Acl;
 
-interface Privilege
+interface PrivilegeInterface
 {
     public function getPrivilegeId();
     public function getResourceId();

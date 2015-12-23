@@ -8,4 +8,5 @@ interface RuleMapperInterface
     public function getRuleById($ruleId);
     public function getRulesForRole($role);
     public function deleteRuleById($ruleId);
+    public function persist($rule);
 }

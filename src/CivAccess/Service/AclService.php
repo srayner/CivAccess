@@ -10,11 +10,15 @@ use CivAccess\Acl\Role;
 class AclService
 {
     protected $acl;
+    protected $privilegeMapper;
+    protected $resourceMapper;
     protected $roleMapper;
     protected $ruleMapper;
     
-    public function __construct($roleMapper, $ruleMapper)
+    public function __construct($privilegeMapper, $resourceMapper, $roleMapper, $ruleMapper)
     {
+        $this->privilegeMapper = $privilegeMapper;
+        $this->resourceMapper = $resourceMapper;
         $this->roleMapper = $roleMapper;
         $this->ruleMapper = $ruleMapper;
         $this->acl = new Acl();
@@ -140,6 +144,46 @@ class AclService
     public function deleteRoleById($roleId)
     {
         return $this->roleMapper->deleteRoleById($roleId);
+    }
+    
+    public function getPrivileges()
+    {
+        return $this->privilegeMapper->getPrivileges();
+    }
+    
+    public function getPrivilegeById($id)
+    {
+        return $this->privilegeMapper->getPrivilegeById($id);
+    }
+    
+    public function persistPrivilege($privilege)
+    {
+        return $this->privilegeMapper->persist($privilege);
+    }
+    
+    public function deletePrivilegeById($id)
+    {
+        return $this->privilegeMapper->deletePrivilegeById($id);
+    }
+    
+    public function getResources()
+    {
+        return $this->resourceMapper->getResources();
+    }
+    
+    public function getResourceById($id)
+    {
+        return $this->resourceMapper->getResourceById($id);
+    }
+    
+    public function persistResource($resource)
+    {
+        return $this->resourceMapper->persist($resource);
+    }
+    
+    public function deleteResourceById($id)
+    {
+        return $this->resourceMapper->deleteResourceById($id);
     }
 }
 

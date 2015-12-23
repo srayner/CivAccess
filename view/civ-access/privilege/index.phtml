@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-lg-8">     
+        <h1>Privileges</h1>
+    </div>
+    <div class="col-lg-4">
+        <a style="margin-top: 20px;" class="pull-right btn btn-success btn-sm" href="<?php echo $this->url('civaccess/default', array('controller' => 'privilege', 'action' => 'add'));?>">
+            <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;New Privilege
+        </a>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Privilege</th>
+            <th>Display Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach($this->privileges as $privilege): ?>
+        <tr>
+            <td><?php echo $role->getPrivilege();?></td>
+            <td><?php echo $role->getDisplayName();?></td>
+            <td style="width: 1%;" nowrap>
+                <a class="btn btn-sm btn-warning" href="<?php echo $this->url('civaccess/default', array('controller' => 'privilege', 'action' => 'edit', 'id' => $role->getPrivilegeId()))?>">
+                    <span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Edit
+                </a>
+                <a class="btn btn-sm btn-danger" href="<?php echo $this->url('civaccess/default', array('controller' => 'privilege', 'action' => 'delete', 'id' => $role->getPrivilegeId()))?>">
+                    <span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Delete
+                </a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>

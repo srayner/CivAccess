@@ -2,12 +2,11 @@
 
 namespace CivAccess\Mapper;
 
-use Zend\Db\Adapter\Adapter;
 use Zend\Stdlib\Hydrator\ClassMethods;
 use Zend\Stdlib\Hydrator\HydratorInterface;
 use ZfcBase\Mapper\AbstractDbMapper;
 
-class RuleMapper extends AbstractDbMapper
+class RuleMapper extends AbstractDbMapper implements RuleMapperInterface
 {
     protected $tableName = 'access_rule';
     
@@ -34,11 +33,6 @@ class RuleMapper extends AbstractDbMapper
     public function deleteRuleById($ruleId)
     {
         return parent::delete(array('rule_id' => $ruleId));
-    }
-    
-    public function setDbAdapter(Adapter $dbAdapter)
-    {
-        $this->dbAdapter = $dbAdapter;
     }
     
     public function persist($rule)
