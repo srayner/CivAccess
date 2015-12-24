@@ -1,0 +1,21 @@
+<h1>Delete Access Resource</h1>
+
+<p>Are you sure that you want to delete this access resource?</p>
+<dl class="dl-horizontal">
+    <dt>Resource</dt><dd><?php echo $this->escapeHtml($this->resource->getResource()); ?></dd>
+    <dt>Display Name</dt><dd><?php echo $this->escapeHtml($this->resource->getDisplayName()); ?></dd>
+</dl>
+ <?php
+ $url = $this->url('civaccess/default', array(
+     'controller' => 'resource',
+     'action'     => 'delete',
+     'id'         => $this->resource->getResourceId(),
+ ));
+ ?>
+<form action="<?php echo $url; ?>" method="post">
+    <div>
+        <input type="hidden" name="id" value="<?php echo (int) $this->resource->getResourceId(); ?>" />
+        <input class="btn btn-primary" type="submit" name="del" value="Yes" />
+        <input class="btn btn-default" type="submit" name="del" value="No" />
+    </div>
+</form>

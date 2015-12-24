@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-lg-8">     
+        <h1>Access Resources</h1>
+    </div>
+    <div class="col-lg-4">
+        <a style="margin-top: 20px;" class="pull-right btn btn-success btn-sm" href="<?php echo $this->url('civaccess/default', array('controller' => 'resource', 'action' => 'add'));?>">
+            <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;New Resource
+        </a>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Resource</th>
+            <th>Display Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($this->resources as $resource):?>
+        <tr>
+            <td><?php echo $resource->getResource();?></td>
+            <td><?php echo $resource->getDisplayName();?></td>
+            <td style="width: 1%;" nowrap>
+                <a class="btn btn-sm btn-warning" href="<?php echo $this->url('civaccess/default', array('controller' => 'resource', 'action' => 'edit', 'id' => $resource->getResourceId()));?>">
+                    <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Edit
+                </a>
+                <a class="btn btn-sm btn-danger" href="<?php echo $this->url('civaccess/default', array('controller' => 'resource', 'action' => 'delete', 'id' => $resource->getResourceId()))?>">
+                    <span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Delete
+                </a>
+            </td>
+        </tr>
+        <?php endforeach;?>
+    </tbody>
+</table>

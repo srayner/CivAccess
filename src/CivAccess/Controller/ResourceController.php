@@ -28,7 +28,7 @@ class ResourceController extends AbstractAclController
             // Check if data is valid.
             if ($form->isValid()) {
                 
-                // Save new rule to database.
+                // Save new resource to database.
                 $this->getAclService()->persistResource($resource);
                 
                 // Redirect to resources index page.
@@ -54,7 +54,7 @@ class ResourceController extends AbstractAclController
         }
         
         // Grab the resource with the specified id.
-        $resource = $this->getAclService()->getRuleById($id);
+        $resource = $this->getAclService()->getResourceById($id);
         $form = $this->getServiceLocator()->get('CivAccess\ResourceForm');
         $form->bind($resource);
         $form->get('submit')->setAttribute('value', 'Edit');
@@ -65,8 +65,8 @@ class ResourceController extends AbstractAclController
             $form->setData($request->getPost());
             if ($form->isValid()) {
                 
-                // Persist rule.
-                $this->getAclService()->persistRule($resource);
+                // Persist resource.
+                $this->getAclService()->persistResource($resource);
                 
                 // Redirect to list of resources.
                 return $this->redirect()->toRoute('civaccess/default', array('controller' => 'resource'));
@@ -98,7 +98,7 @@ class ResourceController extends AbstractAclController
             }
 
             // Redirect to list of resources.
-            return $this->redirect()->toRoute('civaccess/default', array('controller' => 'resources'));
+            return $this->redirect()->toRoute('civaccess/default', array('controller' => 'resource'));
          }
         
         // If not a POST request, then render the confirmation page.

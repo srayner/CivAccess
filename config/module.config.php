@@ -49,7 +49,7 @@ return array(
         'invokables' => array(
             'CivAccess\Controller\Rule'      => 'CivAccess\Controller\RuleController',
             'CivAccess\Controller\Role'      => 'CivAccess\Controller\RoleController',
-            'CivAccess\Controller\Rresource' => 'CivAccess\Controller\ResourceController',
+            'CivAccess\Controller\Resource'  => 'CivAccess\Controller\ResourceController',
             'CivAccess\Controller\Privilege' => 'CivAccess\Controller\PrivilegeController',
         ),    
     ),
