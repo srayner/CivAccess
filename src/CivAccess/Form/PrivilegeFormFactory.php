@@ -1,8 +1,19 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+namespace CivAccess\Form;
 
+use Zend\ServiceManager\FactoryInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\Stdlib\Hydrator\ClassMethods;
+
+class PrivilegeFormFactory implements FactoryInterface
+{
+    public function createService(ServiceLocatorInterface $serviceLocator)
+    {
+        $form = new PrivilegeForm($serviceLocator);
+        $inputFilter = new PrivilegeInputFilter();
+        $form->setHydrator(new ClassMethods)
+             ->setInputFilter($inputFilter);
+        return $form; 
+    }
+}

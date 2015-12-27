@@ -146,9 +146,9 @@ class AclService
         return $this->roleMapper->deleteRoleById($roleId);
     }
     
-    public function getPrivileges()
+    public function getPrivileges($resourceId)
     {
-        return $this->privilegeMapper->getPrivileges();
+        return $this->privilegeMapper->getPrivileges($resourceId);
     }
     
     public function getPrivilegeById($id)

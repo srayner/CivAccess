@@ -22,9 +22,10 @@ class PrivilegeMapper extends AbstractDbMapper implements PrivilegeMapperInterfa
         return $this->select($select)->current();
     }
 
-    public function getPrivileges()
+    public function getPrivileges($resourceId)
     {
-        $select = $this->getSelect();
+        $select = $this->getSelect()
+                       ->where(array('resource_id' => $resourceId));
         return $this->select($select);
     }
 

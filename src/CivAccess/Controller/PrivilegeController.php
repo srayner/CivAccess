@@ -6,8 +6,15 @@ class PrivilegeController extends AbstractAclController
 {
     public function indexAction()
     {
+        // Ensure we have an id, if not redirect to resource list
+        $id = (int) $this->params()->fromRoute('id', 0);
+        if (!$id) {
+            return $this->redirect()->toRoute('civaccess/default', array('controller' => 'resource'));
+        }
+        
         return array(
-            'resources' => $this->getAclService()->getResources()
+            'resource' => $this->getAclService()->getResourceById($id),
+            'privileges' => $this->getAclService()->getPrivileges($id)
         );
     }
     

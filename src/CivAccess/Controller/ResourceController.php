@@ -106,4 +106,5 @@ class ResourceController extends AbstractAclController
             'resource' => $this->getAclService()->getResourceById($id)    
         );
     }
+    
 }

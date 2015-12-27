@@ -1,10 +1,13 @@
 <div class="row">
     <div class="col-lg-8">     
-        <h1>Privileges</h1>
+        <h1>Privileges for <?php echo $this->resource->getDisplayName();?></h1>
     </div>
     <div class="col-lg-4">
-        <a style="margin-top: 20px;" class="pull-right btn btn-success btn-sm" href="<?php echo $this->url('civaccess/default', array('controller' => 'privilege', 'action' => 'add'));?>">
+        <a style="margin-top: 20px; margin-left: 5px;" class="pull-right btn btn-success btn-sm" href="<?php echo $this->url('civaccess/default', array('controller' => 'privilege', 'action' => 'add'));?>">
             <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;New Privilege
+        </a>
+        <a style="margin-top: 20px; margin-left: 5px;" class="pull-right btn btn-default btn-sm" href="<?php echo $this->url('civaccess/default', array('controller' => 'resource'));?>">
+            <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;Resources
         </a>
     </div>
 </div>
@@ -12,21 +15,21 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Privilege</th>
             <th>Display Name</th>
+            <th>Privilege</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
     <?php foreach($this->privileges as $privilege): ?>
         <tr>
-            <td><?php echo $role->getPrivilege();?></td>
-            <td><?php echo $role->getDisplayName();?></td>
+            <td><?php echo $privilege->getDisplayName();?></td>
+            <td><?php echo $privilege->getPrivilege();?></td>
             <td style="width: 1%;" nowrap>
-                <a class="btn btn-sm btn-warning" href="<?php echo $this->url('civaccess/default', array('controller' => 'privilege', 'action' => 'edit', 'id' => $role->getPrivilegeId()))?>">
+                <a class="btn btn-sm btn-warning" href="<?php echo $this->url('civaccess/default', array('controller' => 'privilege', 'action' => 'edit', 'id' => $privilege->getPrivilegeId()))?>">
                     <span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Edit
                 </a>
-                <a class="btn btn-sm btn-danger" href="<?php echo $this->url('civaccess/default', array('controller' => 'privilege', 'action' => 'delete', 'id' => $role->getPrivilegeId()))?>">
+                <a class="btn btn-sm btn-danger" href="<?php echo $this->url('civaccess/default', array('controller' => 'privilege', 'action' => 'delete', 'id' => $privilege->getPrivilegeId()))?>">
                     <span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Delete
                 </a>
             </td>
