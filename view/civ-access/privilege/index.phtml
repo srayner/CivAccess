@@ -3,11 +3,11 @@
         <h1>Privileges for <?php echo $this->resource->getDisplayName();?></h1>
     </div>
     <div class="col-lg-4">
-        <a style="margin-top: 20px; margin-left: 5px;" class="pull-right btn btn-success btn-sm" href="<?php echo $this->url('civaccess/default', array('controller' => 'privilege', 'action' => 'add'));?>">
+        <a style="margin-top: 20px;" class="pull-right btn btn-success btn-sm" href="<?php echo $this->url('civaccess/default', array('controller' => 'privilege', 'action' => 'add'));?>">
             <span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;New Privilege
         </a>
-        <a style="margin-top: 20px; margin-left: 5px;" class="pull-right btn btn-default btn-sm" href="<?php echo $this->url('civaccess/default', array('controller' => 'resource'));?>">
-            <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;Resources
+        <a style="margin-top: 20px; margin-right: 5px;" class="pull-right btn btn-default btn-sm" href="<?php echo $this->url('civaccess/default', array('controller' => 'resource'));?>">
+            <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;&nbsp;Access Control
         </a>
     </div>
 </div>
