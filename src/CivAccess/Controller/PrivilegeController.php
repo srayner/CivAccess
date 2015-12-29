@@ -37,9 +37,13 @@ class PrivilegeController extends AbstractAclController
                 
                 // Save new privilege to database.
                 $this->getAclService()->persistPrivilege($privilege);
-                
+               
                 // Redirect to privileges index page.
-                return $this->redirect()->toRoute('civaccess/default', array('controller' => 'privilege'));
+                return $this->redirect()->toRoute('civaccess/default', array(
+                    'controller' => 'privilege',
+                    'action'     => 'index',
+                    'id'         => $privilege->getResourceId()
+                ));
             }
         }
         
@@ -56,7 +60,7 @@ class PrivilegeController extends AbstractAclController
         if (!$id) {
              return $this->redirect()->toRoute('civaccess/default', array(
                  'controller' => 'privilege',
-                 'action' => 'add'
+                 'action'     => 'add'
              ));
         }
         
@@ -76,7 +80,11 @@ class PrivilegeController extends AbstractAclController
                 $this->getAclService()->persistPrivilege($privilege);
                 
                 // Redirect to list of privileges.
-                return $this->redirect()->toRoute('civaccess/default', array('controller' => 'privilege'));
+                return $this->redirect()->toRoute('civaccess/default', array(
+                    'controller' => 'privilege',
+                    'action'     => 'index',
+                    'id'         => $privilege->getResourceId()
+                ));
             }     
         }
         
@@ -97,6 +105,9 @@ class PrivilegeController extends AbstractAclController
         $request = $this->getRequest();
         if ($request->isPost()) {
             
+            // Grab the privilege with the specified id.
+            $privilege = $this->getAclService()->getPrivilegeById($id);
+        
             // Only perform delete if value posted was 'Yes'.
             $del = $request->getPost('del', 'No');
             if ($del == 'Yes') {
@@ -105,7 +116,11 @@ class PrivilegeController extends AbstractAclController
             }
 
             // Redirect to list of privileges.
-            return $this->redirect()->toRoute('civaccess/default', array('controller' => 'privilege'));
+            return $this->redirect()->toRoute('civaccess/default', array(
+                'controller' => 'privilege',
+                'action'     => 'index',
+                'id'         => $privilege->getResourceId()
+            ));
          }
         
         // If not a POST request, then render the confirmation page.
