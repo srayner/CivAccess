@@ -10,7 +10,7 @@ class RuleFormFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $form = new RuleForm();
+        $form = new RuleForm($serviceLocator);
         $inputFilter = new RuleInputFilter();
         $form->setHydrator(new ClassMethods)
              ->setInputFilter($inputFilter);

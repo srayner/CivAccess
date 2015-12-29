@@ -3,13 +3,22 @@
 namespace CivAccess\Form;
 
 use Zend\Form\Form;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 class RuleForm extends Form
 {
-    public function __construct()
+    private $serviceLocator;
+    
+    public function __construct(ServiceLocatorInterface $serviceLocator)
     {
         parent::__construct();
         
+        $this->serviceManager = $serviceLocator;
+        $this->addElements();
+    }
+    
+    private function addElements()
+    {
         // Rule Id
         $this->add(array(
             'type' => 'Zend\Form\Element\Hidden',
@@ -18,24 +27,26 @@ class RuleForm extends Form
         
         // Role
         $this->add(array(
+            'type' => 'Zend\Form\Element\Select',
             'name' => 'role',
             'options' => array(
                 'label' => 'Role',
+                'options' => $this->getRolesArray()
             ),
             'attributes' => array(
-                'type' => 'text',
                 'class' => 'form-control input-sm'
             ), 
         ));
         
         // Resource
         $this->add(array(
+            'type' => 'Zend\Form\Element\Select',
             'name' => 'resource',
             'options' => array(
                 'label' => 'Resource',
+                'options' => $this->getResourcesArray()
             ),
             'attributes' => array(
-                'type' => 'text',
                 'class' => 'form-control input-sm'
             ), 
         ));
@@ -62,5 +73,25 @@ class RuleForm extends Form
                 'class' => 'btn btn-primary'
             ),
         ));
+    }
+    
+    private function getRolesArray()
+    {
+        $roles = $this->serviceManager->get('CivAccess\AclService')->getRoles();
+        $result = array();
+        foreach($roles as $role) {
+            $result[$role->getRole()] = $role->getRole();
+        }
+        return $result;
+    }
+    
+    private function getResourcesArray()
+    {
+        $resources = $this->serviceManager->get('CivAccess\AclService')->getResources();
+        $result = array();
+        foreach($resources as $resource) {
+            $result[$resource->getResource()] = $resource->getDisplayName();
+        }
+        return $result;
     }
 }
