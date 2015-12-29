@@ -21,7 +21,7 @@ return array(
                     'route'    => '/access',
                     'defaults' => array(
                         '__NAMESPACE__' => 'CivAccess\Controller',
-                        'controller'    => 'Rule',
+                        'controller'    => 'Index',
                         'action'        => 'index',
                     ),
                 ),
@@ -47,6 +47,7 @@ return array(
     
     'controllers' => array(
         'invokables' => array(
+            'CivAccess\Controller\Index'     => 'CivAccess\Controller\IndexController',
             'CivAccess\Controller\Rule'      => 'CivAccess\Controller\RuleController',
             'CivAccess\Controller\Role'      => 'CivAccess\Controller\RoleController',
             'CivAccess\Controller\Resource'  => 'CivAccess\Controller\ResourceController',

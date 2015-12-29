@@ -26,10 +26,11 @@ create table access_resource (
 ) ENGINE=InnoDB;
 
 -- Resources.
-insert into access_resource (resource_id, resource, display_name) values (1, 'CivAccess\\Controller\\Role', 'Roles');
-insert into access_resource (resource_id, resource, display_name) values (2, 'CivAccess\\Controller\\Rule', 'Rules');
-insert into access_resource (resource_id, resource, display_name) values (3, 'CivAccess\\Controller\\Resource', 'Resources');
-insert into access_resource (resource_id, resource, display_name) values (4, 'CivAccess\\Controller\\Privilege', 'Privileges');
+insert into access_resource (resource_id, resource, display_name) values (1, 'CivAccess\\Controller\\Index', 'Access Index');
+insert into access_resource (resource_id, resource, display_name) values (2, 'CivAccess\\Controller\\Role', 'Roles');
+insert into access_resource (resource_id, resource, display_name) values (3, 'CivAccess\\Controller\\Rule', 'Rules');
+insert into access_resource (resource_id, resource, display_name) values (4, 'CivAccess\\Controller\\Resource', 'Resources');
+insert into access_resource (resource_id, resource, display_name) values (5, 'CivAccess\\Controller\\Privilege', 'Privileges');
 
 -- Privileges table.
 create table access_privilege (
@@ -44,9 +45,6 @@ create table access_privilege (
 
 -- Privileges.
 insert into access_privilege (resource_id, privilege, display_name) values (1, 'index', 'Browse');
-insert into access_privilege (resource_id, privilege, display_name) values (1, 'add', 'Add');
-insert into access_privilege (resource_id, privilege, display_name) values (1, 'edit', 'Edit');
-insert into access_privilege (resource_id, privilege, display_name) values (1, 'delete', 'Delete');
 insert into access_privilege (resource_id, privilege, display_name) values (2, 'index', 'Browse');
 insert into access_privilege (resource_id, privilege, display_name) values (2, 'add', 'Add');
 insert into access_privilege (resource_id, privilege, display_name) values (2, 'edit', 'Edit');
@@ -59,6 +57,10 @@ insert into access_privilege (resource_id, privilege, display_name) values (4, '
 insert into access_privilege (resource_id, privilege, display_name) values (4, 'add', 'Add');
 insert into access_privilege (resource_id, privilege, display_name) values (4, 'edit', 'Edit');
 insert into access_privilege (resource_id, privilege, display_name) values (4, 'delete', 'Delete');
+insert into access_privilege (resource_id, privilege, display_name) values (5, 'index', 'Browse');
+insert into access_privilege (resource_id, privilege, display_name) values (5, 'add', 'Add');
+insert into access_privilege (resource_id, privilege, display_name) values (5, 'edit', 'Edit');
+insert into access_privilege (resource_id, privilege, display_name) values (5, 'delete', 'Delete');
 
 -- Rule table.
 create table access_rule (

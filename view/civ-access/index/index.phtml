@@ -1,0 +1,24 @@
+<h1>Access Control</h1>
+<p>Access control is the selective restriction of access to system resources.</p>
+<div>
+    <h3>Resources</h3>
+    <p>Resources are the functional parts of the system to which access is to be restricted.</p>
+    <a class="btn btn-sm btn-default" href="<?php echo $this->url('civaccess/default',
+            array('controller' => 'resource'));?>">Manage Resources <span class="glyphicon glyphicon-arrow-right"></span></a>
+</div>
+
+<div>
+    <h3>Roles</h3>
+    <p>A role is a set of connected behaviours or rights, conceptualised as users or groups of users.</p>
+    <a class="btn btn-sm btn-default" href="<?php echo $this->url('civaccess/default',
+            array('controller' => 'role'));?>">Manage Roles <span class="glyphicon glyphicon-arrow-right"></span></a>
+</div>
+
+<div>
+    <h3>Rules</h3>
+    <p>Access rule form a policy that defines which role can access certain resources.</p>
+    <a class="btn btn-sm btn-default" href="<?php echo $this->url('civaccess/default',
+            array('controller' => 'rule'));?>">Manage Rules <span class="glyphicon glyphicon-arrow-right"></span></a>
+</div>
+
+
