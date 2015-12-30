@@ -70,7 +70,7 @@ class RuleForm extends Form
                 'type'  => 'submit',
                 'value' => 'Add',
                 'id'    => 'submitbutton',
-                'class' => 'btn btn-primary'
+                'class' => 'btn btn-sm btn-primary'
             ),
         ));
     }
