@@ -3,12 +3,17 @@
 namespace CivAccess\Form;
 
 use Zend\Form\Form;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 class RoleForm extends Form
 {
-    public function __construct()
+    private $serviceLocator;
+    
+    public function __construct(ServiceLocatorInterface $serviceLocator)
     {
         parent::__construct();
+        
+        $this->serviceLocator = $serviceLocator;
         
         // Role
         $this->add(array(
@@ -24,12 +29,13 @@ class RoleForm extends Form
         
         // Parent
         $this->add(array(
+            'type' => 'Zend\Form\Element\Select',
             'name' => 'parent',
             'options' => array(
                 'label' => 'Inherits From',
+                'options' => $this->getRolesArray()
             ),
             'attributes' => array(
-                'type' => 'text',
                 'class' => 'form-control input-sm'
             ), 
         ));
@@ -44,5 +50,15 @@ class RoleForm extends Form
                 'class' => 'btn btn-primary'
             ),
         ));
+    }
+    
+    private function getRolesArray()
+    {
+        $roles = $this->serviceLocator->get('CivAccess\AclService')->getRoles();
+        $result = array();
+        foreach($roles as $role) {
+            $result[$role->getRole()] = $role->getRole();
+        }
+        return $result;
     }
 }

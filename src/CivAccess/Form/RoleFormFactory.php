@@ -10,7 +10,7 @@ class RoleFormFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $form = new RoleForm();
+        $form = new RoleForm($serviceLocator);
         $inputFilter = new RoleInputFilter();
         $form->setHydrator(new ClassMethods)
              ->setInputFilter($inputFilter);

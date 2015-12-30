@@ -13,7 +13,7 @@ class RuleForm extends Form
     {
         parent::__construct();
         
-        $this->serviceManager = $serviceLocator;
+        $this->serviceLocator = $serviceLocator;
         $this->addElements();
     }
     
@@ -77,7 +77,7 @@ class RuleForm extends Form
     
     private function getRolesArray()
     {
-        $roles = $this->serviceManager->get('CivAccess\AclService')->getRoles();
+        $roles = $this->serviceLocator->get('CivAccess\AclService')->getRoles();
         $result = array();
         foreach($roles as $role) {
             $result[$role->getRole()] = $role->getRole();
@@ -87,7 +87,7 @@ class RuleForm extends Form
     
     private function getResourcesArray()
     {
-        $resources = $this->serviceManager->get('CivAccess\AclService')->getResources();
+        $resources = $this->serviceLocator->get('CivAccess\AclService')->getResources();
         $result = array();
         foreach($resources as $resource) {
             $result[$resource->getResource()] = $resource->getDisplayName();
