@@ -47,6 +47,7 @@ class RuleForm extends Form
                 'options' => $this->getResourcesArray()
             ),
             'attributes' => array(
+              //  'id'    => 'resource-select',
                 'class' => 'form-control input-sm'
             ), 
         ));

@@ -15,6 +15,10 @@ class Module
         $strategy       = $serviceManager->get('CivAccess\DeniedStrategy');
         $config         = $serviceManager->get('config')['CivAccess'];
         
+        // Register a "render" event, at high priority (so it executes prior
+        // to the view attempting to render)
+        $eventManager->attach('render', array($this, 'registerJsonStrategy'), 100);
+        
         // Attach the guards as listeners.
         foreach ($guards as $guard) {
             $eventManager->attach($guard);
@@ -45,6 +49,21 @@ class Module
             }, 100);
         }
         
+    }
+    
+    /**
+     * @param  \Zend\Mvc\MvcEvent $e The MvcEvent instance
+     * @return void
+     */
+    public function registerJsonStrategy($e)
+    {
+        $app          = $e->getTarget();
+        $locator      = $app->getServiceManager();
+        $view         = $locator->get('Zend\View\View');
+        $jsonStrategy = $locator->get('ViewJsonStrategy');
+
+        // Attach strategy, which is a listener aggregate, at high priority
+        $view->getEventManager()->attach($jsonStrategy, 100);
     }
     
     public function getAutoloaderConfig()
