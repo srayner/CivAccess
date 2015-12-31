@@ -1,10 +1,27 @@
 <script>
     $( document ).ready(function() {
         $( "select[name='resource']" ).change(function() {
-            console.log("Handler for .change() called.");
-            //$.get( "/access/privilege/index/1", function( data ) {
-            //    alert( "Data Loaded: " + data );
-            //});
+            
+            var resourceId = $( "select[name='resource']" ).val();
+
+            $.ajax({
+                url: '/access/privilege/json/' + resourceId,
+                headers: {          
+                    Accept : "application/json; charset=utf-8",   
+                },      
+                success : function(response) {
+                    var selectElement = $("select[name='privilege']");
+                    selectElement.find('option').remove();
+                    var arrayLength = response.length;
+                    for (var i = 0; i < arrayLength; i++) {
+                        console.log(response[i].privilegeId);
+                        selectElement.append($("<option></option>")
+                            .attr("value",response[i].privilegeId)
+                            .text(response[i].displayName)); 
+                    }
+                }
+            });
+   
         });
     });
 </script>

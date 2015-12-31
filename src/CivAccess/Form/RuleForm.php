@@ -54,12 +54,12 @@ class RuleForm extends Form
         
         // Privilege
         $this->add(array(
+            'type' => 'Zend\Form\Element\Select',
             'name' => 'privilege',
             'options' => array(
                 'label' => 'Privilege',
             ),
             'attributes' => array(
-                'type' => 'text',
                 'class' => 'form-control input-sm'
             ), 
         ));
@@ -91,7 +91,7 @@ class RuleForm extends Form
         $resources = $this->serviceLocator->get('CivAccess\AclService')->getResources();
         $result = array();
         foreach($resources as $resource) {
-            $result[$resource->getResource()] = $resource->getDisplayName();
+            $result[$resource->getResourceId()] = $resource->getDisplayName();
         }
         return $result;
     }

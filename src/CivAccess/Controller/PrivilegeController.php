@@ -2,6 +2,8 @@
 
 namespace CivAccess\Controller;
 
+use Zend\View\Model\JsonModel;
+
 class PrivilegeController extends AbstractAclController
 {
     public function indexAction()
@@ -13,9 +15,26 @@ class PrivilegeController extends AbstractAclController
         }
         
         return array(
-            'resource' => $this->getAclService()->getResourceById($id),
             'privileges' => $this->getAclService()->getPrivileges($id)
         );
+    }
+    
+    public function jsonAction()
+    {
+        $id = (int) $this->params()->fromRoute('id', 0);
+     //   die(var_dump($id));
+     //   if (!$id) {
+     //       return null;
+     //   }
+        
+        $result = array();
+        $privileges = $this->getAclService()->getPrivileges($id);
+        foreach ($privileges as $privilege)
+        {
+            array_push($result, $privilege->toArray());
+        }
+        
+        return new JsonModel($result);
     }
     
     public function addAction()
