@@ -15,6 +15,7 @@ class PrivilegeController extends AbstractAclController
         }
         
         return array(
+            'resource' => $this->getAclService()->getResourceById($id),
             'privileges' => $this->getAclService()->getPrivileges($id)
         );
     }
