@@ -1,5 +1,6 @@
 <script>
     $( document ).ready(function() {
+        $( "select[name='resource']" ).prepend( '<option hidden selected></option>' );
         $( "select[name='resource']" ).change(function() {
             
             var resourceId = $( "select[name='resource']" ).val();
