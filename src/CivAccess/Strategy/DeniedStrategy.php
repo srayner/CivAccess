@@ -8,6 +8,7 @@ use Zend\Http\Response;
 use Zend\Mvc\MvcEvent;
 use Zend\Stdlib\ResponseInterface;
 use Zend\View\Model\ViewModel;
+use Zend\Session\Container;
 
 use CivAccess\Guard\Guard;
 use CivAccess\Exception\UnAuthorizedException;
@@ -91,6 +92,8 @@ class DeniedStrategy implements ListenerAggregateInterface
         
         $response = $response ?: new Response();
         if ($viewVariables['role'] == 'guest') {
+            $container = new Container('redirect');
+            $container->url = $event->getRequest()->getUri()->getPath();
             $response->getHeaders()->addHeaderLine('Location', '/login');
             $response->setStatusCode(302);
         } else {
