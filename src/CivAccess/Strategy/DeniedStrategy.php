@@ -16,11 +16,13 @@ use CivAccess\Exception\UnAuthorizedException;
 class DeniedStrategy implements ListenerAggregateInterface
 {
     protected $template;
+    protected $displayInfo;
     protected $listeners = array();
     
-    public function __construct($template)
+    public function __construct($template, $displayInfo)
     {
         $this->template = (string) $template;
+        $this->displayInfo = $displayInfo;
     }
     
     public function attach(\Zend\EventManager\EventManagerInterface $events)
@@ -65,8 +67,9 @@ class DeniedStrategy implements ListenerAggregateInterface
         
         // Common view variables
         $viewVariables = array(
-           'error'      => $event->getParam('error'),
-           'identity'   => $event->getParam('identity'),
+           'error'        => $event->getParam('error'),
+           'identity'     => $event->getParam('identity'),
+           'display_info' => $this->displayInfo
         );
         switch ($event->getError()) {
             case Guard::ERROR:

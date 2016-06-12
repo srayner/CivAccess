@@ -1,8 +1,10 @@
 <h1>A 403 Error occured</h1>
 <h2>Access Denied</h2>
 
+<?php if (isset($this->display_info) && $this->display_info): ?>
 <h3>Exception info</h3>
 Role: <?php echo $this->role; ?><br>
 Resource: <?php echo $this->resource; ?><br>
 Privilege: <?php echo $this->privilege; ?><br>
+<?php endif; ?>
 

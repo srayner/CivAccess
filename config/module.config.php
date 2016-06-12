@@ -9,7 +9,8 @@ return array(
         'new_role_event_param'  => 'user',
         'old_role_event_id'     => '',
         'old_role_event'        => 'delete.post',
-        'old_role_event_param'  => 'id'
+        'old_role_event_param'  => 'id',
+        'display_info'          => false
     ),
     
     // Router configuration.

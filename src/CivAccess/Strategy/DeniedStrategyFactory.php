@@ -9,7 +9,8 @@ class DeniedStrategyFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        return new DeniedStrategy('error/403');        
+        $config = $serviceLocator->get('config')['CivAccess'];
+        return new DeniedStrategy('error/403', $config['display_info']);        
     }
 
 }
