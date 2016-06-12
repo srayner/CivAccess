@@ -89,11 +89,16 @@ class DeniedStrategy implements ListenerAggregateInterface
                 return;
         }
         
-        $model    = new ViewModel($viewVariables);
         $response = $response ?: new Response();
-        $model->setTemplate($this->getTemplate());
-        $event->getViewModel()->addChild($model);
-        $response->setStatusCode(403);
+        if ($viewVariables['role'] == 'guest') {
+            $response->getHeaders()->addHeaderLine('Location', '/login');
+            $response->setStatusCode(302);
+        } else {
+            $model = new ViewModel($viewVariables);
+            $model->setTemplate($this->getTemplate());
+            $event->getViewModel()->addChild($model);
+            $response->setStatusCode(403);
+        }
         $event->setResponse($response);
     }
 
