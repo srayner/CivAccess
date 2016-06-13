@@ -146,6 +146,11 @@ class AclService
         return $this->roleMapper->deleteRoleById($roleId);
     }
     
+    public function deleteRoleByRole($role)
+    {
+        return $this->roleMapper->deleteRoleByRole($role);
+    }
+    
     public function getPrivileges($resourceId)
     {
         return $this->privilegeMapper->getPrivileges($resourceId);
