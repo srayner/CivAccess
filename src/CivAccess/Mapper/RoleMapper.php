@@ -41,6 +41,11 @@ class RoleMapper extends AbstractDbMapper implements RoleMapperInterface
         parent::delete(array('role_id' => $roleId));
     }
     
+    public function deleteRoleByRole($role)
+    {
+        parent::delete(array('role' => $role));
+    }
+    
     /**
      * @param object|array $entity
      * @param string|TableIdentifier|null $tableName

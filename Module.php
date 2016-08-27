@@ -45,7 +45,7 @@ class Module
             $sharedEventManager->attach($config['old_role_event_id'], $config['old_role_event'], function($e) use($serviceManager, $param) {
                 $role = $e->getParam($param);
                 $service = $serviceManager->get('CivAccess\AclService');
-                $service->deleteRole($role);
+                $service->deleteRoleByRole($role);
             }, 100);
         }
         
