@@ -1,3 +1,8 @@
+[![Latest Stable Version](https://poser.pugx.org/srayner/civaccess/v/stable)](https://packagist.org/packages/srayner/civaccess)
+[![Total Downloads](https://poser.pugx.org/srayner/civaccess/downloads)](https://packagist.org/packages/srayner/civaccess)
+[![Latest Unstable Version](https://poser.pugx.org/srayner/civaccess/v/unstable)](https://packagist.org/packages/srayner/civaccess)
+[![License](https://poser.pugx.org/srayner/civaccess/license)](https://packagist.org/packages/srayner/civaccess)
+
 # CivAccess
 
 A Zend Framework 2 authorisation module. Based around the Zend\Permission\Acl component. Designed to be easy to use and
